@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Avradeep</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+p{
+  font-size:16px;
+  line-height:1.8;
+  opacity:0.95;
+  margin-bottom:14px;
+}
+h1{
+  margin-bottom:18px;
+}
+.text-block{
+  margin-top:10px;
+}
+
+body{
+  background:radial-gradient(circle at bottom,#0b1c24,#020b10 70%);
+  color:white;
+  max-width:420px;
+  margin:auto;
+  overflow:hidden;
+}
+
+/* SECTIONS */
+section{
+  min-height:100vh;
+  padding:40px 22px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  animation:fadeUp 1s ease;
+  position:relative;
+  z-index:2;
+}
+
+.hidden{display:none;}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+button{
+  margin-top:32px;
+  padding:12px 32px;
+  border:none;
+  border-radius:30px;
+  font-size:15px;
+  background:white;
+  color:#0b1c24;
+  cursor:pointer;
+}
+
+/* COUNTDOWN CIRCLE */
+.count-wrapper{
+  position:relative;
+  width:180px;
+  height:180px;
+}
+
+.count-number{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:72px;
+  font-weight:900;
+}
+
+svg{
+  transform:rotate(-90deg);
+}
+
+circle{
+  fill:none;
+  stroke:#ffffff;
+  stroke-width:8;
+  stroke-dasharray:565;
+  stroke-dashoffset:565;
+  animation:countCircle 1s linear forwards;
+}
+
+@keyframes countCircle{
+  to{stroke-dashoffset:0;}
+}
+
+/* BIRTHDAY TITLE */
+.bday-title{
+  font-size:34px;
+  font-weight:800;
+  line-height:1.3;
+  text-align:center;
+  animation:glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse{
+  0%,100%{
+    text-shadow:0 0 12px rgba(255,255,255,.4);
+  }
+  50%{
+    text-shadow:0 0 22px rgba(255,255,255,.9);
+  }
+}
+
+/* FIREWORK CANVAS */
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:1;
+  canvas{
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.4));
+}
+
+}
+
+/* PHOTO */
+.photo-frame{
+  position:relative;
+  width:100%;
+  height:70vh;
+  max-height:420px;
+  border-radius:22px;
+  overflow:hidden;
+  margin-top:20px;
+  background:#000;
+}
+
+/* blurred background */
+.photo-bg{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  filter:blur(20px) brightness(0.6);
+  transform:scale(1.2);
+}
+
+/* main image */
+.photo-frame img{
+  position:absolute;
+  inset:0;
+  margin:auto;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  opacity:0;
+  transition:opacity 1.5s ease;
+  z-index:2;
+}
+
+.photo-frame img.active{
+  opacity:1;
+}
+
+
+
+.photo-frame img.active{
+  opacity:1;
+  transform:scale(1);
+}
+
+video{
+  width:100%;
+  max-height:75vh;   /* 🔥 main fix */
+  border-radius:18px;
+  margin-top:20px;
+  object-fit:cover;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<!-- COUNTDOWN -->
+<section id="countSection">
+  <div class="count-wrapper">
+    <svg width="180" height="180">
+      <circle cx="90" cy="90" r="90"></circle>
+    </svg>
+    <div class="count-number" id="countNum">5</div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section id="introSection" class="hidden">
+  <div class="bday-title">Happy Birthday 🎉<br>Avradeep ❤️</div>
+  <button onclick="nextSection()">Continue</button>
+</section>
+
+<!-- MAIN 1 -->
+<section>
+  <h1>Happy Birthday ❤️❤️</h1>
+  <p>Many More Happy Returns of the day 🎂</p>
+  <p>khub valo thak, khusi thak, God Bless You with all good things 🎀🎁</p>
+  <p>Life e onek egiye ja, onek success achieve kor 😊</p>
+  <button onclick="nextSection()">Continue</button>
+</section>
+
+<!-- MAIN 2 -->
+<section class="hidden">
+  <h1>For You ❤️</h1>
+  <p>
+    Today is your birthday.<br><br>
+    Ajker din ta ami ignore korte partam na,<br>
+    Jani onek kichui change hoye geche but tao ami chai tui sab samay khusi thak 😌<br><br>
+    Ami eta kono rokom kono expectations charai tor jonno baniyechi I hope tor valo lagbe<br>
+    Eta dekhe jodi ektuo mon valo hoye thake taholei eta banano worth it 💫
+  </p>
+  <button onclick="nextSection()">Continue</button>
+</section>
+
+<!-- MAIN 3 -->
+<section class="hidden">
+  <h1>Just Saying This</h1>
+  <p>
+    Jani ekhon amader majhe onek distance ese geche,<br>
+    but tao tor jonno care r respect dutoi all time thakbe.<br><br>
+    I wish tor sudhu ajker din bole na puro bochor puro life khub khub valo katuk,<br>
+    Love You ❤️<br><br>
+    Happy Birthday.
+  </p>
+  <button onclick="nextSection()">Next</button>
+</section>
+
+
+<!-- PHOTOS -->
+<section class="hidden">
+  <h1>Some Moments</h1>
+
+  <div class="photo-frame">
+    <div class="photo-bg"></div>
+
+    <img src="img1.jpeg" class="active">
+    <img src="img2.jpeg">
+    <img src="img3.jpeg">
+    <img src="img4.jpeg">
+  </div>
+
+  <div class="caption">
+    <br>
+    <p>
+      Ei moments gulo chaileo bhulte parbo na,<br>
+      se ja kichui hoye jak na keno 😊🎀
+    </p>
+  </div>
+  <button onclick="nextSection()">Next</button>
+</section>
+
+
+<!-- VIDEO -->
+<section class="hidden">
+  <h1>Something Special 🎥</h1>
+  <video controls playsinline>
+    <source src="birthday.mp4" type="video/mp4">
+  </video>
+  <button onclick="nextSection()">Next</button>
+</section>
+
+
+
+<!-- END -->
+<section class="hidden">
+  <h1>That’s All 🤍</h1>
+  <p>
+    r extra kicchu bolbo na<br>
+    sudhu ekta jinis e chaibo tui valo thak 😊🎀<br><br>
+    Just wishing you<br>
+    Once Again Very Very Happiest Birthday ❤️❤️
+  </p>
+  <button onclick="nextSection()">Finish</button>
+</section>
+
+<section>
+  <h1>Made By Mota Thailand 😁</h1>
+</section>
+
+<audio id="song" preload="auto">
+  <source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* FIREWORKS */
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+let particles = [];
+
+class Particle{
+  constructor(x,y,color){
+    this.x = x;
+    this.y = y;
+    this.radius = Math.random()*2 + 1;
+    this.color = color;
+    this.angle = Math.random()*Math.PI*2;
+    this.speed = Math.random()*5 + 2;
+    this.gravity = 0.03;
+    this.life = 100;
+    this.alpha = 1;
+    this.vx = Math.cos(this.angle) * this.speed;
+    this.vy = Math.sin(this.angle) * this.speed;
+  }
+
+  update(){
+    this.vy += this.gravity;
+    this.x += this.vx;
+    this.y += this.vy;
+    this.life--;
+    this.alpha -= 0.01;
+  }
+
+  draw(){
+    ctx.save();
+    ctx.globalAlpha = this.alpha;
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
+    ctx.fillStyle = this.color;
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+function explode(x,y){
+  const colors = ["#ff4d6d","#ffd166","#4cc9f0","#c77dff","#f72585","#ffffff"];
+  const count = 70 + Math.random()*30;
+
+  for(let i=0;i<count;i++){
+    particles.push(
+      new Particle(
+        x,
+        y,
+        colors[Math.floor(Math.random()*colors.length)]
+      )
+    );
+  }
+}
+
+function animate(){
+  ctx.fillStyle = "rgba(0,0,0,0.15)"; // trail effect
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  particles.forEach((p,i)=>{
+    p.update();
+    p.draw();
+    if(p.life <= 0){
+      particles.splice(i,1);
+    }
+  });
+
+  requestAnimationFrame(animate);
+}
+animate();
+
+/* AUTO FIREWORKS */
+setInterval(()=>{
+  explode(
+    Math.random()*canvas.width,
+    Math.random()*canvas.height*0.4
+  );
+},1800);
+
+/* CONTINUOUS FIREWORKS */
+setInterval(()=>{
+  firework(
+    Math.random()*canvas.width,
+    Math.random()*canvas.height/2
+  );
+},2000);
+
+/* COUNTDOWN */
+let count=5;
+const num=document.getElementById("countNum");
+const countSection=document.getElementById("countSection");
+const introSection=document.getElementById("introSection");
+
+const timer=setInterval(()=>{
+  count--;
+  if(count>0){
+    num.textContent=count;
+    document.querySelector("circle").style.animation="none";
+    document.querySelector("circle").offsetHeight;
+    document.querySelector("circle").style.animation="countCircle 1s linear forwards";
+  }else{
+    clearInterval(timer);
+    countSection.classList.add("hidden");
+    introSection.classList.remove("hidden");
+  }
+},1000);
+
+/* NAVIGATION */
+const sections=document.querySelectorAll("section");
+let index=1;
+const song=document.getElementById("song");
+
+function nextSection(){
+  sections[index].classList.add("hidden");
+  index++;
+  sections[index].classList.remove("hidden");
+
+  if(song.paused){
+    song.play().catch(()=>{});
+  }
+
+  if(sections[index].querySelector(".photo-frame")){
+    slideshow();
+  }
+}
+
+/* SLIDESHOW */
+function slideshow(){
+  const frame = document.querySelector(".photo-frame");
+  const bg = document.querySelector(".photo-bg");
+  const imgs = frame.querySelectorAll("img");
+  let i = 0;
+
+  // initial background
+  bg.style.backgroundImage = `url(${imgs[0].src})`;
+
+  setInterval(()=>{
+    imgs[i].classList.remove("active");
+    i = (i + 1) % imgs.length;
+    imgs[i].classList.add("active");
+
+    // update blurred bg
+    bg.style.backgroundImage = `url(${imgs[i].src})`;
+  }, 3200);
+}
+
+</script>
+
+</body>
+</html>
